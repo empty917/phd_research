@@ -794,3 +794,45 @@ footer {
   .eval-block { padding: 20px; }
   .eval-copy { grid-template-columns: 1fr; gap: 12px; }
 }
+
+
+/* v2.1: CasiaHand video geometry matched to source resolutions */
+.casia-overall-videos {
+  grid-template-columns: minmax(240px, .86fr) minmax(280px, 1fr);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+.video-card.native-aspect {
+  justify-self: center;
+  background: #0b0f16;
+}
+.video-card.native-aspect video {
+  object-fit: contain;
+}
+.video-card.video-9x16 {
+  aspect-ratio: 9 / 16;
+  width: min(100%, 360px);
+}
+.video-card.video-3x4 {
+  aspect-ratio: 3 / 4;
+  width: min(100%, 420px);
+}
+.video-card.eval-video.video-2x1 {
+  aspect-ratio: 2 / 1;
+  width: 100%;
+}
+.video-card.eval-video.video-16x9 {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .casia-overall-videos {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+  .video-card.video-9x16 { width: min(78vw, 360px); }
+  .video-card.video-3x4 { width: min(86vw, 420px); }
+}
