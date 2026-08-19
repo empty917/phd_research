@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Temporary: prevent search engine indexing during anonymous review -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta name="description" content="SPICE — Spatial Intelligence Driven Cognition and Execution Framework for Task-Aware Robotic Grasp in Clutter." />
+  <meta name="theme-color" content="#f8fafc" />
+  <title>SPICE | Dashun Yan</title>
+  <link rel="stylesheet" href="../../assets/css/site.css" />
+</head>
+<body class="project-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../../">
+        <span class="brand-mark">DY</span>
+        <span>Dashun Yan</span>
+      </a>
+      <nav class="nav-links" aria-label="Project navigation">
+        <a href="#overview">Overview</a>
+        <a href="#gag">GAG</a>
+        <a href="#spatial-eval">Spatial Reasoning</a>
+        <a href="#zeroshot">Zero-shot Grasp</a>
+        <a class="keep-mobile" href="../../">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="project-hero">
+      <div class="container">
+        <div class="project-label">Work 02 · Spatial Intelligence for Robotic Manipulation</div>
+        <h1 class="project-title">SPICE: Spatial Intelligence Driven Cognition and Execution Framework for Task-Aware Robotic Grasp in Clutter</h1>
+        <p class="project-subtitle">
+          A hierarchical cognition–execution framework that unifies scene semantics and 3D geometry in an updatable spatial cognitive map,
+          then derives spatial affordances for active perception, object rearrangement, grasp synthesis, and collision-aware execution.
+        </p>
+        <p class="project-authors">Dashun Yan · first-author research</p>
+        <div class="project-links">
+          <a class="button primary" href="../../assets/papers/SPICE_Revision_Manuscript.pdf" target="_blank">Paper PDF</a>
+          <a class="button" href="#videos">Experiment Videos</a>
+          <a class="button" href="../../">Academic Homepage</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="container">
+        <p class="section-kicker">Framework overview</p>
+        <h2>A unified representation for cognition and execution.</h2>
+        <p class="section-intro">
+          SPICE builds a persistent spatial cognitive map from RGB-D observations, uses it to ground language-conditioned task planning,
+          constructs SDF-based spatial affordance fields, and finally synthesizes executable grasps and collision-aware trajectories.
+        </p>
+
+        <div class="figure-card">
+          <img data-lightbox src="../../assets/images/spice/framework-overview.webp" alt="Overview of the SPICE framework" />
+          <p class="figure-caption">Framework overview reproduced from the manuscript. Click to enlarge.</p>
+        </div>
+
+        <div class="module-grid">
+          <article class="module-card">
+            <span class="tag">LSCM</span>
+            <h3>Long-horizon Spatial Cognitive Mapper</h3>
+            <p>Builds and maintains a unified semantic–geometric cognitive map across viewpoints.</p>
+          </article>
+          <article class="module-card">
+            <span class="tag">CMIT</span>
+            <h3>Cognitive Map-based In-context Task Agent</h3>
+            <p>Interprets language instructions, reasons over map coordinates, and selects structured action primitives.</p>
+          </article>
+          <article class="module-card">
+            <span class="tag">SAFP</span>
+            <h3>Spatial Affordance Field Planner</h3>
+            <p>Transforms scene SDFs into task-conditioned scalar fields for rearrangement and active perception.</p>
+          </article>
+          <article class="module-card">
+            <span class="tag">GAG</span>
+            <h3>Grasp and Action Generator</h3>
+            <p>Generates, ranks, and executes collision-aware grasps and motion plans grounded in the scene representation.</p>
+          </article>
+        </div>
+
+        <div class="metric-grid" aria-label="Main experimental metrics">
+          <div class="metric"><strong>96.33%</strong><span>Cognitive Map Accuracy</span></div>
+          <div class="metric"><strong>90.97%</strong><span>Planning Success Rate</span></div>
+          <div class="metric"><strong>86.47%</strong><span>Grasp Success Rate</span></div>
+          <div class="metric"><strong>78.57%</strong><span>Task Success Rate</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">Spatial cognitive map</p>
+        <h2>Persistent semantic and geometric memory across views.</h2>
+        <div class="split-content">
+          <div class="copy">
+            <p>
+              LSCM combines object-level functional semantics with point-cloud and SDF geometry in a shared world frame.
+              During active perception, visual-semantic context associates objects across viewpoints while geometric consistency checks guard against erroneous point-cloud fusion.
+            </p>
+          </div>
+          <div class="figure-card" style="margin-top:0">
+            <img data-lightbox src="../../assets/images/spice/lscm.webp" alt="Overview of the LSCM module" />
+            <p class="figure-caption">LSCM initialization and cross-view cognitive-map maintenance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">Spatial affordance field</p>
+        <h2>Task-conditioned geometry for arrangement and active perception.</h2>
+        <div class="split-content">
+          <div class="figure-card" style="margin-top:0">
+            <img data-lightbox src="../../assets/images/spice/safp.webp" alt="Overview of the SAFP module" />
+            <p class="figure-caption">SAFP uses scene-level SDFs to score placement candidates and generate next-best-view trajectories.</p>
+          </div>
+          <div class="copy">
+            <p>
+              For arrangement, SAFP samples candidate placement positions from task-relevant object surfaces, filters them with geometric and directional constraints,
+              and ranks feasible coordinates with semantic, clearance, and support terms. For perception, a spatial information field identifies occluded regions and drives next-best-view sampling.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gag">
+      <div class="container">
+        <p class="section-kicker">GAG module</p>
+        <h2>Scene-aware grasp synthesis and collision-aware motion planning.</h2>
+        <p class="section-intro">
+          The action generator uses a virtual coordinate system to stabilize grasp generation across viewpoints, performs SDF-based hand–object contact and scene-collision checks,
+          and sends the highest-ranked feasible grasp to an obstacle-aware motion planner.
+        </p>
+
+        <div class="figure-card">
+          <img data-lightbox src="../../assets/images/spice/gag.webp" alt="SPICE grasp synthesis and motion planning figure" />
+          <p class="figure-caption">Grasp synthesis, simulated finger closure, real-world grasping, and obstacle-aware motion planning.</p>
+        </div>
+
+        <div id="videos" class="video-grid cols-3" aria-label="GAG experiment videos">
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/gag/gag-01.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>GAG Demo 01</strong><small>assets/videos/gag/gag-01.mp4</small></div>
+            <figcaption>GAG Demo 01</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/gag/gag-02.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>GAG Demo 02</strong><small>assets/videos/gag/gag-02.mp4</small></div>
+            <figcaption>GAG Demo 02</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/gag/gag-03.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>GAG Demo 03</strong><small>assets/videos/gag/gag-03.mp4</small></div>
+            <figcaption>GAG Demo 03</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spatial-eval">
+      <div class="container">
+        <p class="section-kicker">Spatial Reasoning Capability Evaluation</p>
+        <h2>Reasoning over distance, direction, and spatial layout.</h2>
+        <p class="section-intro">
+          The manuscript evaluates SPICE on spatial-understanding and positional-manipulation tasks, including distance-based relations and directional constraints.
+          Eight video slots are reserved below in the requested 2 × 4 desktop layout.
+        </p>
+
+        <div class="video-grid cols-4" aria-label="Spatial reasoning videos">
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/spatial_reasoning/spatial-01.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Spatial Demo 01</strong><small>spatial-01.mp4</small></div>
+            <figcaption>Spatial Reasoning Demo 01</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/spatial_reasoning/spatial-02.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Spatial Demo 02</strong><small>spatial-02.mp4</small></div>
+            <figcaption>Spatial Reasoning Demo 02</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/spatial_reasoning/spatial-03.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Spatial Demo 03</strong><small>spatial-03.mp4</small></div>
+            <figcaption>Spatial Reasoning Demo 03</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/spatial_reasoning/spatial-04.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Spatial Demo 04</strong><small>spatial-04.mp4</small></div>
+            <figcaption>Spatial Reasoning Demo 04</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/spatial_reasoning/spatial-05.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Spatial Demo 05</strong><small>spatial-05.mp4</small></div>
+            <figcaption>Spatial Reasoning Demo 05</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/spatial_reasoning/spatial-06.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Spatial Demo 06</strong><small>spatial-06.mp4</small></div>
+            <figcaption>Spatial Reasoning Demo 06</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/spatial_reasoning/spatial-07.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Spatial Demo 07</strong><small>spatial-07.mp4</small></div>
+            <figcaption>Spatial Reasoning Demo 07</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/spatial_reasoning/spatial-08.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Spatial Demo 08</strong><small>spatial-08.mp4</small></div>
+            <figcaption>Spatial Reasoning Demo 08</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="zeroshot">
+      <div class="container">
+        <p class="section-kicker">Zero-shot Grasp Evaluation</p>
+        <h2>Task-aware grasping in previously unseen cluttered scenes.</h2>
+        <p class="section-intro">
+          The zero-shot evaluation measures semantic-spatial cognition, planning, grasping, and complete task execution under language instructions.
+          Eight video slots are reserved below in the requested 4 × 2 desktop layout.
+        </p>
+
+        <div class="video-grid cols-2" aria-label="Zero-shot grasp videos">
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/zero_shot/zeroshot-01.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Zero-shot Demo 01</strong><small>zeroshot-01.mp4</small></div>
+            <figcaption>Zero-shot Grasp Demo 01</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/zero_shot/zeroshot-02.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Zero-shot Demo 02</strong><small>zeroshot-02.mp4</small></div>
+            <figcaption>Zero-shot Grasp Demo 02</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/zero_shot/zeroshot-03.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Zero-shot Demo 03</strong><small>zeroshot-03.mp4</small></div>
+            <figcaption>Zero-shot Grasp Demo 03</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/zero_shot/zeroshot-04.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Zero-shot Demo 04</strong><small>zeroshot-04.mp4</small></div>
+            <figcaption>Zero-shot Grasp Demo 04</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/zero_shot/zeroshot-05.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Zero-shot Demo 05</strong><small>zeroshot-05.mp4</small></div>
+            <figcaption>Zero-shot Grasp Demo 05</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/zero_shot/zeroshot-06.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Zero-shot Demo 06</strong><small>zeroshot-06.mp4</small></div>
+            <figcaption>Zero-shot Grasp Demo 06</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/zero_shot/zeroshot-07.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Zero-shot Demo 07</strong><small>zeroshot-07.mp4</small></div>
+            <figcaption>Zero-shot Grasp Demo 07</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/zero_shot/zeroshot-08.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Zero-shot Demo 08</strong><small>zeroshot-08.mp4</small></div>
+            <figcaption>Zero-shot Grasp Demo 08</figcaption>
+          </figure>
+        </div>
+
+        <div class="figure-card">
+          <img data-lightbox src="../../assets/images/spice/real-world-experiment.webp" alt="Real-world SPICE experiment examples" />
+          <p class="figure-caption">Successful real-world grasps and corresponding spatial affordance fields from the manuscript.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="section-kicker">Hardware</p>
+        <h2>Real-world robotic evaluation setup.</h2>
+        <div class="split-content">
+          <div class="copy">
+            <p>
+              Experiments use a Dobot CR7 arm, a wrist-mounted Orbbec DC1 RGB-D camera, and a three-finger robotic hand in a cluttered tabletop workspace.
+              The evaluation object set contains more than 100 diverse objects, with novel scene layouts constructed for each trial.
+            </p>
+          </div>
+          <div class="figure-card" style="margin-top:0">
+            <img data-lightbox src="../../assets/images/spice/experiment-setup.webp" alt="SPICE experimental setup" />
+            <p class="figure-caption">Hardware configuration and evaluation object set.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <span>SPICE project page · © <span data-year></span> Dashun Yan</span>
+      <span><a href="../../">Back to academic homepage</a></span>
+    </div>
+  </footer>
+
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Expanded figure">
+    <button class="lightbox-close" type="button" aria-label="Close image">×</button>
+    <img alt="" />
+  </div>
+
+  <script src="../../assets/js/site.js"></script>
+</body>
+</html>
