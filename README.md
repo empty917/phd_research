@@ -1,4 +1,4 @@
-# Dashun Yan — Academic Homepage (v2)
+# Dashun Yan — Academic Homepage (v2.1)
 
 Static academic website prepared for GitHub Pages at:
 
@@ -45,13 +45,13 @@ Copy these files into:
 
 using these **exact case-sensitive filenames**:
 
-1. `Video_1_Dexterity.mp4`
-2. `Video_2_Payloadtest.mp4`
-3. `Video_3_ThumbgripEvaluation.mp4`
-4. `Video_4_GRASPtaxonomyEvaluation.mp4`
-5. `Video_5_Hand-objectEvaluation.mp4`
+1. `Video_1_Dexterity.mp4` — 720 × 1280 (9:16 portrait)
+2. `Video_2_Payloadtest.mp4` — 720 × 960 (3:4 portrait)
+3. `Video_3_ThumbgripEvaluation.mp4` — 1440 × 720 (2:1 landscape)
+4. `Video_4_GRASPtaxonomyEvaluation.mp4` — 1280 × 720 (16:9 landscape)
+5. `Video_5_Hand-objectEvaluation.mp4` — 1280 × 720 (16:9 landscape)
 
-The HTML is already wired to these paths. When a valid MP4 loads, the placeholder automatically disappears and the browser video player becomes visible. **No HTML edit is required.**
+The HTML is already wired to these paths and now reserves each video's native aspect ratio before the media file is present. When a valid MP4 loads, the placeholder automatically disappears and the browser video player becomes visible. **No HTML edit is required.**
 
 ## Work 02 — SPICE video filenames
 
