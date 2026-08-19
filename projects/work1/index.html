@@ -3,23 +3,311 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work 01 | Dashun Yan</title>
+  <meta name="description" content="CasiaHand — design and evaluation of a 15-DoF tendon-driven anthropomorphic robotic hand." />
+  <meta name="theme-color" content="#f8fafc" />
+  <title>CasiaHand | Dashun Yan</title>
   <link rel="stylesheet" href="../../assets/css/site.css" />
 </head>
-<body>
+<body class="project-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-nav">
     <div class="container nav-inner">
-      <a class="brand" href="../../"><span class="brand-mark">DY</span><span>Dashun Yan</span></a>
-      <nav class="nav-links"><a class="keep-mobile" href="../../">Home</a></nav>
+      <a class="brand" href="../../">
+        <span class="brand-mark">DY</span>
+        <span>Dashun Yan</span>
+      </a>
+      <nav class="nav-links" aria-label="Project navigation">
+        <a href="#overview">Overview</a>
+        <a href="#design">Design</a>
+        <a href="#dexterity">Dexterity</a>
+        <a href="#benchmark">Evaluation</a>
+        <a href="#results">Results</a>
+        <a class="keep-mobile" href="../../">Home</a>
+      </nav>
     </div>
   </header>
-  <main class="coming-soon">
-    <div class="coming-soon-inner">
-      <p class="section-kicker">Work 01</p>
-      <h1>Project page reserved.</h1>
-      <p>This standalone page is ready for the first paper/project. Its URL will remain stable when the full content is added.</p>
-      <a class="button primary" href="../../">Back to homepage</a>
-    </div>
+
+  <main id="main">
+    <section class="project-hero casia-hero">
+      <div class="container">
+        <div class="project-label">Work 01 · Dexterous Robotic Hand Design &amp; Evaluation</div>
+        <h1 class="project-title">CasiaHand: Design and Evaluation of a 15-DoF Tendon-Driven Anthropomorphic Robotic Hand</h1>
+        <p class="project-subtitle">
+          A humanoid-scale robotic hand that balances structural simplicity and functional dexterity through integrated tendon actuation,
+          under-actuated non-thumb fingers, a fully actuated thumb, and a task-based benchmark for realistic hand dexterity evaluation.
+        </p>
+        <p class="project-authors project-authors-long">
+          Dashun Yan · Peng Wang · Tianyi Zhang · Xiwei Wang · Yinglu Wang · Zhenghan Wang · Yongkang Luo · Yayu Huang · Guoqiang Deng
+        </p>
+        <p class="project-venue">IEEE Robotics and Automation Letters (RA-L), Vol. 10, No. 5, May 2025</p>
+        <div class="project-links">
+          <a class="button primary" href="https://doi.org/10.1109/LRA.2025.3555161" target="_blank" rel="noreferrer">Paper / DOI ↗</a>
+          <a class="button" href="#videos">Experiment Videos</a>
+          <a class="button" href="../../">Academic Homepage</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="container">
+        <p class="section-kicker">Overview</p>
+        <h2>Human-like dexterity in a compact, integrated hand.</h2>
+        <p class="section-intro">
+          CasiaHand is a 15-DoF anthropomorphic hand driven by seven palm-integrated actuators. Tendon transmission reduces distal mass,
+          while a hybrid motion architecture gives the thumb independent actuation and couples the three joints of each non-thumb finger
+          through a single tendon and torsion springs. The design targets humanoid-scale deployment without sacrificing the grasp diversity
+          needed for everyday manipulation.
+        </p>
+
+        <div class="metric-grid five">
+          <div class="metric"><strong>15</strong><span>Degrees of freedom</span></div>
+          <div class="metric"><strong>7</strong><span>Actuators</span></div>
+          <div class="metric"><strong>0.89 kg</strong><span>Hand weight</span></div>
+          <div class="metric"><strong>5 kg</strong><span>Maximum payload</span></div>
+          <div class="metric"><strong>90.6%</strong><span>Benchmark score</span></div>
+        </div>
+
+        <div class="hero-figure-grid">
+          <figure class="figure-card">
+            <img data-lightbox src="../../assets/images/casiahand/architecture.webp" alt="CasiaHand architecture with palm-integrated actuator modules" />
+            <p class="figure-caption">CasiaHand architecture: seven motors and tendon-routing modules are integrated inside the palm.</p>
+          </figure>
+          <figure class="figure-card">
+            <img data-lightbox src="../../assets/images/casiahand/finger-structure.webp" alt="Thumb and non-thumb finger transmission structures of CasiaHand" />
+            <p class="figure-caption">Hybrid motion architecture: a fully actuated thumb and tendon-spring under-actuated non-thumb fingers.</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="design">
+      <div class="container">
+        <p class="section-kicker">Design &amp; Control</p>
+        <h2>Integrated tendon drive, passive compliance, and stable position control.</h2>
+        <div class="feature-grid three">
+          <article class="feature-card">
+            <span class="tag">01 / ACTUATION</span>
+            <h3>Palm-integrated tendon drive</h3>
+            <p>Seven geared motors are packaged inside the palm, shortening tendon paths and enabling a compact anthropomorphic form factor.</p>
+          </article>
+          <article class="feature-card">
+            <span class="tag">02 / KINEMATICS</span>
+            <h3>Hybrid actuation architecture</h3>
+            <p>The three thumb joints are independently driven, while each non-thumb digit uses one tendon across three joints with spring return.</p>
+          </article>
+          <article class="feature-card">
+            <span class="tag">03 / COMPLIANCE</span>
+            <h3>Rigid-flexible composite fingers</h3>
+            <p>Soft silicone contact surfaces and torsion-spring joints provide passive adaptation when fingers encounter objects during enclosure.</p>
+          </article>
+        </div>
+
+        <div class="split-content project-split">
+          <div class="copy">
+            <p>
+              The non-thumb fingers intentionally trade independent joint control for mechanical simplicity: one tendon flexes MCP, PIP, and DIP joints,
+              while torsion springs shape the bending sequence and restore extension. This allows the finger to conform passively to object geometry.
+            </p>
+            <p>
+              To improve control of the motor-tendon-spring system, the position loop adds a constant-velocity element when the controller output falls
+              below a spring-resistance-dependent threshold. The reported full finger flexion reaches 380° of motor rotation in 1.09 s while reducing
+              tremor and overshoot near target positions.
+            </p>
+          </div>
+          <figure class="figure-card" style="margin-top:0">
+            <img data-lightbox src="../../assets/images/casiahand/motion-structure.webp" alt="CasiaHand passive compliance and soft contact structure" />
+            <p class="figure-caption">Operational workspace, silicone-covered contact surfaces, and passive compliance of the under-actuated finger.</p>
+          </figure>
+        </div>
+
+        <div class="control-media-grid">
+          <figure class="figure-card">
+            <img data-lightbox src="../../assets/images/casiahand/control-loop.webp" alt="CasiaHand motor position control loop" />
+            <p class="figure-caption">Position-control loop with the added constant-velocity element.</p>
+          </figure>
+          <figure class="figure-card">
+            <img data-lightbox src="../../assets/images/casiahand/control-curves.webp" alt="CasiaHand motor position and control curves" />
+            <p class="figure-caption">Motor-position dynamics and measured finger motion under the control strategy.</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dexterity">
+      <div class="container">
+        <p class="section-kicker">Overall Dexterity</p>
+        <h2>From grasp diversity to force and payload capability.</h2>
+        <p class="section-intro">
+          The hand is designed to support anthropomorphic grasp postures while retaining practical load capacity. Reported measurements include
+          a maximum fingertip force of 16.43 N for non-thumb digits, 11.60 N for the thumb, an average maximum grasp force of 30.42 N,
+          and a demonstrated 5 kg payload using a hook grasp.
+        </p>
+
+        <div class="split-content project-split">
+          <figure class="figure-card" style="margin-top:0">
+            <img data-lightbox src="../../assets/images/casiahand/force-payload.webp" alt="CasiaHand fingertip force, grasp force, and payload tests" />
+            <p class="figure-caption">Fingertip-force measurement, cylindrical grasp-force test, and 5 kg payload demonstration.</p>
+          </figure>
+          <div class="copy">
+            <p>
+              This section presents CasiaHand as a complete robotic end-effector rather than only a mechanism. The two video slots below are reserved
+              for a general dexterity montage and the payload test. Copy the exact filenames into the local video folder and the placeholders will
+              automatically become playable videos without editing this HTML.
+            </p>
+          </div>
+        </div>
+
+        <div class="video-grid cols-2" id="videos" aria-label="CasiaHand overall dexterity videos">
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/casiahand/Video_1_Dexterity.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Overall Dexterity</strong><small>Video_1_Dexterity.mp4</small></div>
+            <figcaption>CasiaHand overall dexterity demonstration</figcaption>
+          </figure>
+          <figure class="video-card">
+            <video controls preload="metadata"><source src="../../assets/videos/casiahand/Video_2_Payloadtest.mp4" type="video/mp4" /></video>
+            <div class="video-placeholder"><div class="play">▶</div><strong>Payload Test</strong><small>Video_2_Payloadtest.mp4</small></div>
+            <figcaption>CasiaHand payload test</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benchmark">
+      <div class="container">
+        <p class="section-kicker">Dexterity Evaluation for Under-Actuated Dexterous Hand</p>
+        <h2>A three-level benchmark from local function to real interaction.</h2>
+        <p class="section-intro">
+          The paper proposes a task-based benchmark organized hierarchically around three perspectives: thumb functionality, multi-DoF coordination,
+          and whole-hand interaction with objects. The progression moves from a critical local component, to coordinated grasp posture generation,
+          and finally to dynamic stability in realistic manipulation.
+        </p>
+
+        <article class="eval-block" id="thumb-eval">
+          <div class="eval-copy">
+            <div class="eval-index">A</div>
+            <div>
+              <h3>Thumb Functionality Evaluation</h3>
+              <p>
+                Thumb performance is assessed with a gripping test and the Kapandji benchmark. In the gripping test, the thumb clamps four objects of
+                different thicknesses against the palm and the hand is rotated around three Cartesian axes to challenge grasp stability. The Kapandji
+                test evaluates opposition and range of motion across 11 target gestures.
+              </p>
+              <div class="result-chip-row"><span>11 / 15 score</span><span>73.33%</span><span>4 / 4 grip tasks</span></div>
+            </div>
+          </div>
+          <div class="eval-media-grid">
+            <figure class="figure-card">
+              <img data-lightbox src="../../assets/images/casiahand/thumb-evaluation.webp" alt="CasiaHand thumb grip and Kapandji evaluation" />
+              <p class="figure-caption">Thumb gripping tasks and achieved Kapandji positions.</p>
+            </figure>
+            <figure class="video-card eval-video">
+              <video controls preload="metadata"><source src="../../assets/videos/casiahand/Video_3_ThumbgripEvaluation.mp4" type="video/mp4" /></video>
+              <div class="video-placeholder"><div class="play">▶</div><strong>Thumb Grip Evaluation</strong><small>Video_3_ThumbgripEvaluation.mp4</small></div>
+              <figcaption>Thumb gripping evaluation</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="eval-block" id="grasp-taxonomy-eval">
+          <div class="eval-copy">
+            <div class="eval-index">B</div>
+            <div>
+              <h3>Multi-DoF Coordination Evaluation</h3>
+              <p>
+                Coordination is evaluated using the 33-class GRASP taxonomy as a reference for human grasp postures. CasiaHand completes 32 of 33 grasp
+                types; the missing #23 adduction grip is attributed to the absence of lateral swing DoF in the non-thumb digits.
+              </p>
+              <div class="result-chip-row"><span>32 / 33 grasps</span><span>96.97%</span><span>GRASP taxonomy</span></div>
+            </div>
+          </div>
+          <div class="eval-media-grid">
+            <figure class="figure-card">
+              <img data-lightbox src="../../assets/images/casiahand/grasp-taxonomy.webp" alt="CasiaHand grasps from the 33-class GRASP taxonomy" />
+              <p class="figure-caption">The 33 reference grasp classes used to evaluate multi-DoF coordination.</p>
+            </figure>
+            <figure class="video-card eval-video">
+              <video controls preload="metadata"><source src="../../assets/videos/casiahand/Video_4_GRASPtaxonomyEvaluation.mp4" type="video/mp4" /></video>
+              <div class="video-placeholder"><div class="play">▶</div><strong>GRASP Taxonomy Evaluation</strong><small>Video_4_GRASPtaxonomyEvaluation.mp4</small></div>
+              <figcaption>Multi-DoF coordination evaluation</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="eval-block" id="hand-object-eval">
+          <div class="eval-copy">
+            <div class="eval-index">C</div>
+            <div>
+              <h3>Hand-Object Interaction Evaluation</h3>
+              <p>
+                Whole-hand performance is tested on 16 objects spanning cylinders, thin objects, irregular bodies, spheres, rings, and tools. During each
+                grasp, the arm executes a spatial trajectory containing rotations and translations so the hand-object system experiences changing gravity
+                directions. Stability, contact sections, and contact force are recorded rather than relying on a purely static grasp pose.
+              </p>
+              <div class="result-chip-row"><span>15 / 16 score</span><span>93.75%</span><span>0 object drops</span></div>
+            </div>
+          </div>
+          <div class="eval-media-grid">
+            <figure class="figure-card">
+              <img data-lightbox src="../../assets/images/casiahand/hand-object.webp" alt="CasiaHand interaction grasps across 16 evaluation objects" />
+              <p class="figure-caption">Human-like grasp postures across the 16-object interaction set.</p>
+            </figure>
+            <figure class="video-card eval-video">
+              <video controls preload="metadata"><source src="../../assets/videos/casiahand/Video_5_Hand-objectEvaluation.mp4" type="video/mp4" /></video>
+              <div class="video-placeholder"><div class="play">▶</div><strong>Hand-Object Evaluation</strong><small>Video_5_Hand-objectEvaluation.mp4</small></div>
+              <figcaption>Dynamic hand-object interaction evaluation</figcaption>
+            </figure>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container">
+        <p class="section-kicker">Key Results</p>
+        <h2>Dexterity validated across component, coordination, and task levels.</h2>
+        <div class="metric-grid">
+          <div class="metric"><strong>73.33%</strong><span>Thumb evaluation</span></div>
+          <div class="metric"><strong>96.97%</strong><span>Multi-DoF coordination</span></div>
+          <div class="metric"><strong>93.75%</strong><span>Hand-object interaction</span></div>
+          <div class="metric"><strong>90.6%</strong><span>Overall benchmark</span></div>
+        </div>
+        <div class="note-box publication-note">
+          <strong>Takeaway.</strong> CasiaHand demonstrates that an under-actuated, tendon-driven architecture can retain broad anthropomorphic grasp capability
+          while reducing actuation complexity. The evaluation also exposes where this simplification matters most: thumb workspace, lateral finger motion,
+          and precise fingertip force transmission remain the key limitations identified in the paper.
+        </div>
+      </div>
+    </section>
+
+    <section class="section citation-section">
+      <div class="container">
+        <p class="section-kicker">Publication</p>
+        <h2>Citation</h2>
+        <div class="citation-card">
+          <p>
+            D. Yan, P. Wang, T. Zhang, X. Wang, Y. Wang, Z. Wang, Y. Luo, Y. Huang, and G. Deng,
+            “CasiaHand: Design and Evaluation of a 15-DoF Tendon-Driven Anthropomorphic Robotic Hand,”
+            <em>IEEE Robotics and Automation Letters</em>, vol. 10, no. 5, pp. 5026–5033, 2025.
+          </p>
+          <a class="button" href="https://doi.org/10.1109/LRA.2025.3555161" target="_blank" rel="noreferrer">DOI: 10.1109/LRA.2025.3555161 ↗</a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="container footer-row">
+      <span>CasiaHand project page · © <span data-year></span> Dashun Yan</span>
+      <span><a href="../../">Back to academic homepage</a></span>
+    </div>
+  </footer>
+
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Expanded figure">
+    <button class="lightbox-close" type="button" aria-label="Close image">×</button>
+    <img alt="" />
+  </div>
+
+  <script src="../../assets/js/site.js"></script>
 </body>
 </html>

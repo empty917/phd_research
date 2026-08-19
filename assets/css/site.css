@@ -648,3 +648,149 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+
+/* v2: CasiaHand project page */
+.project-authors-long {
+  max-width: 1040px;
+  line-height: 1.55;
+  font-weight: 560;
+}
+.project-venue {
+  margin: 9px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+}
+.casia-hero {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(36,87,214,.09), transparent 31%),
+    radial-gradient(circle at 88% 8%, rgba(22,122,99,.07), transparent 28%);
+}
+.metric-grid.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.hero-figure-grid,
+.control-media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+  align-items: stretch;
+}
+.hero-figure-grid .figure-card,
+.control-media-grid .figure-card { margin-top: 0; }
+.hero-figure-grid .figure-card img {
+  height: 340px;
+  object-fit: contain;
+}
+.control-media-grid .figure-card img {
+  height: 250px;
+  object-fit: contain;
+}
+.feature-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+.feature-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.feature-card {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.feature-card .tag {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--accent-2);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+.feature-card h3 { margin: 0 0 8px; font-size: 17px; }
+.feature-card p { margin: 0; color: var(--muted); font-size: 13px; }
+.project-split .copy p:first-child { margin-top: 0; }
+.project-split .copy p:last-child { margin-bottom: 0; }
+.eval-block {
+  margin-top: 36px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,.76);
+  box-shadow: 0 8px 28px rgba(23,32,51,.035);
+}
+.eval-copy {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.eval-index {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--accent-soft);
+  color: var(--accent-2);
+  font-weight: 840;
+  font-size: 15px;
+}
+.eval-copy h3 { margin: 0 0 8px; font-size: 23px; letter-spacing: -.02em; }
+.eval-copy p { max-width: 920px; margin: 0; color: var(--muted); }
+.result-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.result-chip-row span {
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--accent-2);
+  font-size: 12px;
+  font-weight: 720;
+}
+.eval-media-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, .8fr);
+  gap: 16px;
+  margin-top: 22px;
+  align-items: center;
+}
+.eval-media-grid .figure-card { margin: 0; }
+.eval-media-grid .figure-card img {
+  width: 100%;
+  max-height: 430px;
+  object-fit: contain;
+}
+.video-card.eval-video { margin: 0; aspect-ratio: 16 / 11; }
+.publication-note { margin-top: 26px; }
+.citation-card {
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.citation-card p { margin: 0 0 18px; color: var(--muted); }
+.video-card { margin: 0; }
+.figure-card { margin-left: 0; margin-right: 0; }
+
+@media (max-width: 1000px) {
+  .metric-grid.five { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .feature-grid.three { grid-template-columns: 1fr 1fr; }
+  .eval-media-grid { grid-template-columns: 1fr; }
+  .video-card.eval-video { max-width: 700px; width: 100%; }
+}
+
+@media (max-width: 760px) {
+  .metric-grid.five { grid-template-columns: 1fr 1fr; }
+  .hero-figure-grid,
+  .control-media-grid,
+  .feature-grid.three { grid-template-columns: 1fr; }
+  .hero-figure-grid .figure-card img,
+  .control-media-grid .figure-card img { height: auto; }
+  .eval-block { padding: 20px; }
+  .eval-copy { grid-template-columns: 1fr; gap: 12px; }
+}
