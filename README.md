@@ -1,18 +1,59 @@
-# Dashun Yan — Academic Homepage (v1)
+# Dashun Yan — Academic Homepage (v2)
 
-Static academic website designed for GitHub Pages. No build tools or framework are required.
+Static academic website prepared for GitHub Pages at:
 
-## Structure
+`https://empty917.github.io/phd_work/`
 
-- `index.html` — academic homepage
-- `projects/work1/` — reserved standalone page for Work 01
-- `projects/spice/` — SPICE project page (implemented)
+No build tools or framework are required.
+
+## Project pages
+
+- `projects/work1/` — **CasiaHand** project page (implemented in v2)
+- `projects/spice/` — **SPICE** project page (retained from v1)
 - `projects/work3/` — reserved standalone page for Work 03
-- `assets/papers/SPICE_Revision_Manuscript.pdf` — current SPICE manuscript
-- `assets/images/spice/` — figures extracted from the manuscript
-- `assets/videos/` — upload experiment videos here
 
-## Video filenames already wired into the page
+Standalone URLs after deployment:
+
+- `https://empty917.github.io/phd_work/projects/work1/`
+- `https://empty917.github.io/phd_work/projects/spice/`
+- `https://empty917.github.io/phd_work/projects/work3/`
+
+## Work 01 — CasiaHand
+
+The page summarizes:
+
+- 15-DoF / 7-actuator anthropomorphic hand architecture
+- palm-integrated tendon drive
+- fully actuated thumb + under-actuated non-thumb fingers
+- rigid-flexible composite finger design
+- motor-tendon-spring position control
+- force and payload performance
+- the proposed three-level under-actuated hand dexterity benchmark
+- thumb evaluation, GRASP-taxonomy coordination evaluation, and dynamic hand-object interaction evaluation
+
+The published IEEE PDF is **not bundled in this package**. The page links to the DOI instead:
+
+`https://doi.org/10.1109/LRA.2025.3555161`
+
+If you later want to host an author-allowed manuscript, add that file separately and change the paper button.
+
+### CasiaHand video filenames
+
+Copy these files into:
+
+`assets/videos/casiahand/`
+
+using these **exact case-sensitive filenames**:
+
+1. `Video_1_Dexterity.mp4`
+2. `Video_2_Payloadtest.mp4`
+3. `Video_3_ThumbgripEvaluation.mp4`
+4. `Video_4_GRASPtaxonomyEvaluation.mp4`
+5. `Video_5_Hand-objectEvaluation.mp4`
+
+The HTML is already wired to these paths. When a valid MP4 loads, the placeholder automatically disappears and the browser video player becomes visible. **No HTML edit is required.**
+
+## Work 02 — SPICE video filenames
 
 ### GAG module — 3 slots
 
@@ -28,36 +69,51 @@ Static academic website designed for GitHub Pages. No build tools or framework a
 
 - `assets/videos/zero_shot/zeroshot-01.mp4` ... `zeroshot-08.mp4`
 
-If these exact files are uploaded, placeholders automatically disappear once the browser loads each video. No HTML change is required.
+## Anonymous-review setting for SPICE
 
-## GitHub Pages deployment
+The SPICE page currently contains:
 
-### Recommended: personal root site
+```html
+<meta name="robots" content="noindex, nofollow" />
+```
 
-1. Create a repository named `empty917.github.io` under the `empty917` account.
-2. Copy all files from this folder to the repository root.
-3. Push to the `main` branch.
-4. In **Settings → Pages**, choose **Deploy from a branch**, `main`, `/ (root)`.
-5. The homepage will be available at `https://empty917.github.io/`.
-6. Standalone project links will be:
-   - `https://empty917.github.io/projects/work1/`
-   - `https://empty917.github.io/projects/spice/`
-   - `https://empty917.github.io/projects/work3/`
+This reduces normal search-engine indexing during anonymous review, but it does **not** make the URL private. Anyone who knows the URL can still open it.
 
-### Alternative: reuse `mywork_demonstration_page`
+When anonymous review is over, remove that line from:
 
-If you replace the content of the existing `mywork_demonstration_page` repository and enable Pages, relative links still work. The site URL will normally be under `https://empty917.github.io/mywork_demonstration_page/`.
+`projects/spice/index.html`
 
-## Easy edits
+and commit the change.
 
-- Profile portrait: add `assets/images/profile.jpg` and replace the `profile-placeholder` block in `index.html` with an `<img>`.
-- GitHub/ORCID links: already populated.
-- Google Scholar / Email / CV: add once public URLs/files are ready.
-- Change project titles for Work 01 / Work 03 without changing their stable URLs.
+## GitHub Pages deployment to `phd_work`
+
+1. Create the public repository `empty917/phd_work`.
+2. Upload the **contents of this folder** to the repository root. Do not upload the outer `academic_homepage_v2` directory as another nested folder.
+3. Repository root should contain `index.html`, `.nojekyll`, `assets/`, `projects/`, and `README.md`.
+4. Open **Settings → Pages**.
+5. Under **Build and deployment**, select **Deploy from a branch**.
+6. Select branch `main` and folder `/ (root)`.
+7. Save and wait for deployment.
+
+The final homepage should be:
+
+`https://empty917.github.io/phd_work/`
+
+## Adding the videos later
+
+For CasiaHand:
+
+1. On your local copy, open `assets/videos/casiahand/`.
+2. Copy the five MP4 files there with the exact filenames listed above.
+3. Test locally if desired.
+4. Upload/commit the five MP4 files to the same folder in GitHub.
+5. GitHub Pages will redeploy automatically.
+
+For SPICE, follow the equivalent paths listed above.
 
 ## Local preview
 
-From this folder:
+From the website root:
 
 ```bash
 python -m http.server 8000
